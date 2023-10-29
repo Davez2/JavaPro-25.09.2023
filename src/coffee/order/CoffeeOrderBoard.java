@@ -1,50 +1,40 @@
 package coffee.order;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class CoffeeOrderBoard {
-    private List<Order> orderQueue;
+    private ArrayList<Order> orders;
+    private int nextOrderNumber;
 
     public CoffeeOrderBoard() {
-        orderQueue = new ArrayList<>();
+        orders = new ArrayList<>();
+        nextOrderNumber = 1;
     }
 
-    public void add(String customerName) {
-        Order newOrder = new Order(customerName);
-        orderQueue.add(newOrder);
+    public void add(String name) {
+        Order order = new Order(nextOrderNumber, name);
+        orders.add(order);
+        nextOrderNumber++;
     }
 
-    public void deliver() {
-        if (!orderQueue.isEmpty()) {
-            Order nextOrder = orderQueue.remove(0);
-            System.out.println("Delivering order: " + nextOrder.getCustomerName());
-        } else {
-            System.out.println("No orders in the queue.");
-        }
+    public Order deliver() {
+        return orders.remove(0);
     }
 
-    public void deliver(int orderNumber) {
-        for (int i = 0; i < orderQueue.size(); i++) {
-            Order order = orderQueue.get(i);
-            if (order.getOrderNumber() == orderNumber) {
-                System.out.println("Delivering order: " + order.getCustomerName());
-                orderQueue.remove(i);
-                return;
+    public Order deliverNumber(int orderNumber) {
+        for (Order order : orders) {
+            if (order.getNumber() == orderNumber) {
+                orders.remove(order);
+                return order;
             }
         }
-        System.out.println("Order with number " + orderNumber + " wasn't found in the queue.");
+        return null;
     }
 
     public void draw() {
-        if (orderQueue.isEmpty()) {
-            System.out.println("No orders in the queue.");
-        } else {
-            System.out.println("=================");
-            System.out.println("Num | Name");
-            for (Order order : orderQueue) {
-                System.out.println(order.getOrderNumber() + " | " + order.getCustomerName());
-            }
+        System.out.println("=============");
+        System.out.println("Num | Name");
+        for (Order order : orders) {
+            System.out.println(order.getNumber() + " | " + order.getName());
         }
     }
 }

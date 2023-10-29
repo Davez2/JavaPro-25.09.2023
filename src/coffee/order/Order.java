@@ -1,20 +1,19 @@
 package coffee.order;
 
 public class Order {
-    private static int orderCounter = 1;
-    private int orderNumber;
-    private String customerName;
+    private int numbers;
+    private String names;
 
-    public Order(String customerName) {
-        this.orderNumber = orderCounter++;
-        this.customerName = customerName;
+    public Order(int numbers, String names) {
+        this.numbers = numbers;
+        this.names = names;
     }
 
-    public int getOrderNumber() {
-        return orderNumber;
+    public int getNumber() {
+        return numbers;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getName() {
+        return names;
     }
 }

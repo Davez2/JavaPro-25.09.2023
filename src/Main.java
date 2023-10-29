@@ -1,17 +1,18 @@
 import coffee.order.CoffeeOrderBoard;
+import coffee.order.Order;
 
 public class Main {
     public static void main(String[] args) {
-        CoffeeOrderBoard coffeeOrderBoard = new CoffeeOrderBoard();
-        coffeeOrderBoard.add("Allen");
-        coffeeOrderBoard.add("Yoda");
-        coffeeOrderBoard.add("Obi-wan");
-        coffeeOrderBoard.add("John Snow");
+        CoffeeOrderBoard board = new CoffeeOrderBoard();
 
-        coffeeOrderBoard.draw();
-        coffeeOrderBoard.deliver();
-        coffeeOrderBoard.draw();
-        coffeeOrderBoard.deliver(33);
-        coffeeOrderBoard.draw();
+        board.add("Alice");
+        board.add("Bob");
+        board.add("Charlie");
+        board.draw();
+        Order order = board.deliverNumber(3);
+        System.out.println(order.getName());
+
+        board.draw();
+
     }
 }
